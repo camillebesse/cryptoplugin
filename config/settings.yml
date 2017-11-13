@@ -1,0 +1,4 @@
+plugins:
+  cryptocurrencies_enabled:
+    default: true
+    client: true
