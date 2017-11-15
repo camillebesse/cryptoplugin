@@ -1,3 +1,5 @@
 en:
   site_settings: 
     cryptocurrencies_enabled: 'Allows the Cryptocurrencies custom homepage.'
+    cryptocurrencies_new_topic_owner: 'Username of the owner of new topics created.'
+    cryptocurrencies_new_topic_category: 'Category for the new topics.'

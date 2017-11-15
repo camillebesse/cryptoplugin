@@ -1,4 +1,11 @@
 plugins:
   cryptocurrencies_enabled:
-    default: true
+    default: false
     client: true
+  cryptocurrencies_new_topic_owner:
+    type: username
+    default: "system"
+    client: true
+  cryptocurrencies_new_topic_category:
+    type: category_list
+    default: ''

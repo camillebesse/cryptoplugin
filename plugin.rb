@@ -15,6 +15,23 @@ Discourse.anonymous_filters.push(:cryptocurrencies)
 
 load File.expand_path('../lib/cryptocurrencies/engine.rb', __FILE__)
 
+Onebox = Onebox
+
+class Onebox::Engine::CoinMarketCapOnebox
+  include Onebox::Engine
+  
+  REGEX = /^https?:\/\/coinmarketcap.com\/currencies\/(\w+)/
+  matches_regexp REGEX
+
+  def id
+    @url.match(REGEX)[1]
+  end
+  
+  def to_html
+    "<div class=\"coinmarketcap-currency-widget\" data-currency=\"#{id}\" data-base=\"USD\" data-secondary=\"\" data-ticker=\"true\" data-rank=\"true\" data-marketcap=\"true\" data-volume=\"true\" data-stats=\"USD\" data-statsticker=\"false\"></div>"
+  end
+end
+
 after_initialize do
 
   require_dependency 'list_controller'
