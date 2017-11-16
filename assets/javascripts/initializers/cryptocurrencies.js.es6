@@ -3,14 +3,7 @@ import { default as computed, on, observes } from 'ember-addons/ember-computed-d
 
 function initialize(api) {
   api.decorateWidget('post-contents:after-cooked', dec => {
-    console.log('post');
-    console.log(dec);
-  });
-
-  api.decorateWidget('topic-status:after', dec => {
-    console.log('status');
-    console.log(dec);
-    return "hello"
+    return "";
   });
 
   api.modifyClass('component:topic-list', {

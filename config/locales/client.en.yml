@@ -4,11 +4,15 @@ en:
       title: "Home"
       help: "homepage for the site"
   js:
+    cryptocurrency_rank: "Rank"
     cryptocurrency_market_cap_usd: "Market Cap"
     cryptocurrency_price_usd: "Price"
     cryptocurrency_24h_volume_usd: "Volume (24h)"
     cryptocurrency_available_supply: "Circulating Supply"
+    cryptocurrency_percent_change_1h: "Change (1h)"
     cryptocurrency_percent_change_24h: "Change (24h)"
+    cryptocurrency_percent_change_7d: "Change (7d)"
+    cryptocurrency_cmc_link: "CMC"
     cryptocurrencies:
     filters:
       home:

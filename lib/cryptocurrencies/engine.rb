@@ -12,13 +12,10 @@ module Cryptocurrencies
           every 5.minutes
 
           def execute(args)
-
-            uri = URI("https://api.coinmarketcap.com/v1/ticker/")
+            t = Time.new.to_i
+            uri = URI("https://api.coinmarketcap.com/v1/ticker/?limit=999999&t=" + t.to_s)
             response = Net::HTTP.get(uri)
             json = JSON.parse(response)
-
-            category = SiteSetting.cryptocurrencies_new_topic_category
-            Category.find(category).topics.destroy_all
 
             json.each do |currency|
 
@@ -35,7 +32,6 @@ module Cryptocurrencies
                             )
                 topic = Topic.find(t.topic_id)
               else
-                puts 'XXXXXXXXXXXXXXXXXXXX'
                 topic = Topic.find(topic_cfs[0].topic_id)
               end
 
