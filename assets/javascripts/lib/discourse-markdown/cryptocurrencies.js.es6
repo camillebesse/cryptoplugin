@@ -1,5 +1,4 @@
 export function setup(helper) {
-  console.log('whiteList');
   helper.whiteList([ 'div[class=*]',
                     'div[data-currency]',
                     'div[data-base]',
