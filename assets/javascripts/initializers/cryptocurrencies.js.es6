@@ -1,11 +1,16 @@
-import loadScript from 'discourse/lib/load-script';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 
 function initialize(api) {
-console.log("init");
-    api.onPageChange(()=> {
-      loadScript("https://files.coinmarketcap.com/static/widget/currency.js");
-    });
+  api.decorateWidget('post-contents:after-cooked', dec => {
+    console.log('post');
+    console.log(dec);
+  })
+
+  api.decorateWidget('topic-status:after', dec => {
+    console.log('status');
+    console.log(dec);
+    return "hello"
+  })
 }
 
 export default {

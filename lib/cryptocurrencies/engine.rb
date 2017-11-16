@@ -7,8 +7,6 @@ module Cryptocurrencies
 
     config.after_initialize do
 
-      Topic.preloaded_custom_fields << "cryptocurrency_id" if Topic.respond_to? :preloaded_custom_fields
-
       module ::Jobs
         class PollCoinMarketCap < Jobs::Scheduled
           every 5.minutes
@@ -26,10 +24,9 @@ module Cryptocurrencies
 
               topic_cfs = TopicCustomField.where(name: "cryptocurrency_id", value: currency["id"])
               if topic_cfs.empty?
-                puts currency["id"]
                 user = User.find_by(username_lower: SiteSetting.cryptocurrencies_new_topic_owner.downcase)
                 category = SiteSetting.cryptocurrencies_new_topic_category
-                raw = 'https://coinmarketcap.com/currencies/' + currency["id"] + '/'
+                raw = '<div class="hidden-cryptocurrency-content"></div>'
                 t = PostCreator.create(
                               user,
                               title: currency["name"],

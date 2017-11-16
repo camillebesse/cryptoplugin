@@ -1,11 +1,11 @@
 en:
   filters:
-    cryptocurrencies:
+    home:
       title: "Home"
       help: "homepage for the site"
   js:
     cryptocurrencies:
     filters:
-      cryptocurrencies:
+      home:
         title: "Home"
         help: "homepage for the site"
