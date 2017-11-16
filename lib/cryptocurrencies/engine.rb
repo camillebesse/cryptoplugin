@@ -17,6 +17,9 @@ module Cryptocurrencies
               uri = URI("https://api.coinmarketcap.com/v1/ticker/?limit=999999&t=" + t.to_s)
               response = Net::HTTP.get(uri)
               json = JSON.parse(response)
+              
+              topic_cfs = TopicCustomField.where(name: "cryptocurrency_id").pluck(:topic_id)
+              Topic.where(:id => topic_cfs).destroy_all
 
               json.each do |currency|
 
@@ -24,7 +27,7 @@ module Cryptocurrencies
                 if topic_cfs.empty?
                   user = User.find_by(username_lower: SiteSetting.cryptocurrencies_new_topic_owner.downcase)
                   category = SiteSetting.cryptocurrencies_new_topic_category
-                  raw = '<div class="hidden-cryptocurrency-content"></div>'
+                  raw = '<div class="hidden-cryptocurrency-content" id="' + currency["name"] + '"></div>'
                   t = PostCreator.create(
                                 user,
                                 title: currency["name"],
