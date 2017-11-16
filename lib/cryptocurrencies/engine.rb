@@ -18,8 +18,8 @@ module Cryptocurrencies
               response = Net::HTTP.get(uri)
               json = JSON.parse(response)
 
-              category = SiteSetting.cryptocurrencies_new_topic_category
-              Category.find(category).topics.destroy_all
+              topic_cfs = TopicCustomField.where(name: "cryptocurrency_id").pluck(:topic_id)
+              Topic.where(:id => topic_cfs).destroy_all
 
               json.each do |currency|
 
