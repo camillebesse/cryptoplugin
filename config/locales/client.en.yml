@@ -4,6 +4,11 @@ en:
       title: "Home"
       help: "homepage for the site"
   js:
+    cryptocurrency_market_cap_usd: "Market Cap"
+    cryptocurrency_price_usd: "Price"
+    cryptocurrency_24h_volume_usd: "Volume (24h)"
+    cryptocurrency_available_supply: "Circulating Supply"
+    cryptocurrency_percent_change_24h: "Change (24h)"
     cryptocurrencies:
     filters:
       home:
