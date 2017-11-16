@@ -18,9 +18,6 @@ module Cryptocurrencies
               response = Net::HTTP.get(uri)
               json = JSON.parse(response)
 
-              topic_cfs = TopicCustomField.where(name: "cryptocurrency_id").pluck(:topic_id)
-              Topic.where(:id => topic_cfs).destroy_all
-
               json.each do |currency|
 
                 topic_cfs = TopicCustomField.where(name: "cryptocurrency_id", value: currency["id"])
