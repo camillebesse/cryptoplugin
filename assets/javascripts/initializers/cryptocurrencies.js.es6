@@ -1,16 +1,34 @@
 import { withPluginApi } from 'discourse/lib/plugin-api';
+import { default as computed, on, observes } from 'ember-addons/ember-computed-decorators';
 
 function initialize(api) {
   api.decorateWidget('post-contents:after-cooked', dec => {
     console.log('post');
     console.log(dec);
-  })
+  });
 
   api.decorateWidget('topic-status:after', dec => {
     console.log('status');
     console.log(dec);
     return "hello"
-  })
+  });
+
+  api.modifyClass('component:topic-list', {
+    filter() {
+      let filter = this.get('parentView.model.filter');
+      if (filter == "home") {
+        return true;
+      } 
+      else {
+        return false;
+      };
+    },
+
+    @computed('currentRoute')
+    cryptoList() {
+      return this.filter() && Discourse.SiteSettings.cryptocurrencies_enabled;
+    },
+  });
 }
 
 export default {
