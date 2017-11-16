@@ -12,14 +12,12 @@ module Cryptocurrencies
           every 5.minutes
 
           def execute(args)
+
             if SiteSetting.cryptocurrencies_enabled
               t = Time.new.to_i
               uri = URI("https://api.coinmarketcap.com/v1/ticker/?limit=999999&t=" + t.to_s)
               response = Net::HTTP.get(uri)
               json = JSON.parse(response)
-              
-              topic_cfs = TopicCustomField.where(name: "cryptocurrency_id").pluck(:topic_id)
-              Topic.where(:id => topic_cfs).destroy_all
 
               json.each do |currency|
 
@@ -27,14 +25,16 @@ module Cryptocurrencies
                 if topic_cfs.empty?
                   user = User.find_by(username_lower: SiteSetting.cryptocurrencies_new_topic_owner.downcase)
                   category = SiteSetting.cryptocurrencies_new_topic_category
-                  raw = '<div class="hidden-cryptocurrency-content" id="' + currency["name"] + '"></div>'
+                  raw = '<div class="hidden-cryptocurrency-content-' + currency["name"] + '"></div>'
                   t = PostCreator.create(
                                 user,
                                 title: currency["name"],
                                 category: category,
                                 raw: raw
                               )
-                  topic = Topic.find(t.topic_id)
+                  if t
+                    topic = Topic.find(t.topic_id)
+                  end
                 else
                   topic = Topic.find(topic_cfs[0].topic_id)
                 end
