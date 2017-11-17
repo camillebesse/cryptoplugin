@@ -57,6 +57,18 @@ module Cryptocurrencies
                   topic.custom_fields["cryptocurrency_percent_change_24h"] = currency["percent_change_24h"]
                   topic.custom_fields["cryptocurrency_percent_change_7d"] = currency["percent_change_7d"]
                   topic.custom_fields["cryptocurrency_last_updated"] = currency["last_updated"]
+
+                  topic.custom_fields["cryptocurrency_price_usd_sort"] = currency["price_usd"].to_i
+                  topic.custom_fields["cryptocurrency_price_btc_sort"] = currency["price_btc"].to_i
+                  topic.custom_fields["cryptocurrency_24h_volume_usd_sort"] = currency["24h_volume_usd"].to_i
+                  topic.custom_fields["cryptocurrency_market_cap_usd_sort"] = currency["market_cap_usd"].to_i
+                  topic.custom_fields["cryptocurrency_available_supply_sort"] = currency["available_supply"].to_i
+                  topic.custom_fields["cryptocurrency_total_supply_sort"] = currency["total_supply"].to_i
+                  topic.custom_fields["cryptocurrency_max_supply_sort"] = currency["max_supply"].to_i
+                  topic.custom_fields["cryptocurrency_percent_change_1h_sort"] = currency["percent_change_1h"].to_i
+                  topic.custom_fields["cryptocurrency_percent_change_24h_sort"] = currency["percent_change_24h"].to_i
+                  topic.custom_fields["cryptocurrency_percent_change_7d_sort"] = currency["percent_change_7d"].to_i
+
                   topic.save
                 end
               end

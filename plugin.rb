@@ -20,6 +20,13 @@ after_initialize do
   require_dependency 'topic_query'
   class ::TopicQuery
     SORTABLE_MAPPING["market_rank"] = "custom_fields.cryptocurrency_rank"
+    SORTABLE_MAPPING["market_cap"] = "custom_fields.cryptocurrency_rank"
+    SORTABLE_MAPPING["price_usd"] = "custom_fields.cryptocurrency_price_usd_sort"
+    SORTABLE_MAPPING["24h_volume_usd"] = "custom_fields.cryptocurrency_24h_volume_usd_sort"
+    SORTABLE_MAPPING["percent_change_1h"] = "custom_fields.cryptocurrency_percent_change_1h_sort"
+    SORTABLE_MAPPING["percent_change_24h"] = "custom_fields.cryptocurrency_percent_change_24h_sort"
+    SORTABLE_MAPPING["percent_change_7d"] = "custom_fields.cryptocurrency_percent_change_7d_sort"
+    SORTABLE_MAPPING["cmc_link"] = "custom_fields.cryptocurrency_symbol_sort"
 
     def list_home
       create_list(:market_rank, unordered: true) do |topics|

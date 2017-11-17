@@ -5,15 +5,15 @@
     {{/if}}
   </th>
 {{/if}}
-{{raw "topic-list-header-column" name='cryptocurrency_rank'}}
+{{raw "topic-list-header-column" sortable='true' order='market_rank' name='cryptocurrency_rank'}}
 {{raw "topic-list-header-column" order='default' name='topic.title' bulkSelectEnabled=bulkSelectEnabled showBulkToggle=toggleInTitle canBulkSelect=canBulkSelect}}
 {{#unless hideCategory}}
   {{raw "topic-list-header-column" sortable=sortable order='category' name='category_title'}}
 {{/unless}}
-{{raw "topic-list-header-column" name='cryptocurrency_market_cap_usd'}}
-{{raw "topic-list-header-column" name='cryptocurrency_price_usd'}}
-{{raw "topic-list-header-column" name='cryptocurrency_24h_volume_usd'}}
-{{raw "topic-list-header-column" name='cryptocurrency_percent_change_1h'}}
-{{raw "topic-list-header-column" name='cryptocurrency_percent_change_24h'}}
-{{raw "topic-list-header-column" name='cryptocurrency_percent_change_7d'}}
-{{raw "topic-list-header-column" name='cryptocurrency_cmc_link'}}
+{{raw "topic-list-header-column" sortable='true' order='market_cap' name='cryptocurrency_market_cap_usd'}}
+{{raw "topic-list-header-column" sortable='true' order='price_usd' name='cryptocurrency_price_usd'}}
+{{raw "topic-list-header-column" sortable='true' order='24h_volume_usd' name='cryptocurrency_24h_volume_usd'}}
+{{raw "topic-list-header-column" sortable='true' order='percent_change_1h' name='cryptocurrency_percent_change_1h'}}
+{{raw "topic-list-header-column" sortable='true' order='percent_change_24h' name='cryptocurrency_percent_change_24h'}}
+{{raw "topic-list-header-column" sortable='true' order='percent_change_7d' name='cryptocurrency_percent_change_7d'}}
+{{raw "topic-list-header-column" sortable='true' order='cmc_link' name='cryptocurrency_cmc_link'}}
