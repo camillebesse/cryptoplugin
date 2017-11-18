@@ -3,6 +3,7 @@ import computed from 'ember-addons/ember-computed-decorators';
 import { bufferedRender } from 'discourse-common/lib/buffered-render';
 import { findRawTemplate } from 'discourse/lib/raw-templates';
 import { wantsNewWindow } from 'discourse/lib/intercept-click';
+import { ajax } from 'discourse/lib/ajax';
 
 export function showEntrance(e) {
   let target = $(e.target);
@@ -167,14 +168,12 @@ export default Ember.Component.extend(bufferedRender({
     let postId = this.get('topic.topic_post_id'),
         $bookmark = this.$('.topic-bookmark');
     $bookmark.on('click.topic-bookmark', () => {
-      const elem = this.element.id;
-      if (elem) {
-        const registry = this.container.lookup('-view-registry:main');
-        if (registry) {
-          const view = registry[elem];
-          view.send("toggleBookmark");
-        }
-      }
+      ajax('/t/' + this.get('topic').id + '/bookmark', {
+        type: 'PUT'
+      }).finally(function(result) {
+        self.get('topic').bookmarked = true;
+        self.rerenderBuffer();
+      });
     });
   }
 
