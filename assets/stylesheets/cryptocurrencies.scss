@@ -9,3 +9,11 @@ img.crypto-title-icon {
 .topic-featured-link.crypto-featured-link{
   text-transform: uppercase;
 }
+.crypto-percentage{
+  &.positive{
+    color: #093;
+  }
+  &.negative{
+    color: #d14836;
+  }
+}
