@@ -29,3 +29,59 @@ img.crypto-title-icon {
     color: #d14836;
   }
 }
+.cryptocurrency-custom-widget {
+  margin-bottom: 30px;
+
+  .crypto-widget-id{
+    display: inline-block;
+    max-width: 200px;
+    width:100%;
+    vertical-align: top;
+
+    img {
+      max-width: 24px;
+      vertical-align: bottom;
+    }
+
+    .crypto-name{
+      font-size: 18px;
+      font-weight: bold;
+      padding-left: 5px;
+    }
+
+    .crypto-symbol {
+      color: #919191;
+      padding-left: 5px;
+    }
+
+    .crypto-rank {
+      background-color: #5cb85c;
+      border-radius:5px;
+      color: #fff;
+      display: inline-block;
+      margin: 10px 0px 0px 0px;
+      padding: 2px 7px;
+    }
+  }
+  .crypto-data {
+    display: inline-block;
+    padding-left: 25px;
+    width: 465px;
+
+    .crypto-price-usd {
+      font-size: 24px;
+    }
+
+    .crypto-change-24h {
+      font-size: 24px; 
+      margin-left: 10px;
+    }
+    .crypto-table-header{
+      font-weight: bold;
+    }
+    .crypto-table-cell{
+      display: inline-block;
+      width: 25%;
+    }
+  }
+}

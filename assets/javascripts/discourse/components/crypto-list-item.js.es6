@@ -167,7 +167,14 @@ export default Ember.Component.extend(bufferedRender({
     let postId = this.get('topic.topic_post_id'),
         $bookmark = this.$('.topic-bookmark');
     $bookmark.on('click.topic-bookmark', () => {
-      this.get('topic').toggleBookmark().finally(() => this.rerenderBuffer());
+      const elem = this.element.id;
+      if (elem) {
+        const registry = this.container.lookup('-view-registry:main');
+        if (registry) {
+          const view = registry[elem];
+          view.send("toggleBookmark");
+        }
+      }
     });
   }
 
