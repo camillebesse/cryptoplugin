@@ -4,6 +4,7 @@ en:
       title: "Home"
       help: "homepage for the site"
   js:
+    cryptocurrency_favorite: "Fav"
     cryptocurrency_rank: "Rank"
     cryptocurrency_market_cap_usd: "Market Cap"
     cryptocurrency_price_usd: "Price"

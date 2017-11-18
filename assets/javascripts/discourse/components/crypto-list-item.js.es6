@@ -26,6 +26,7 @@ export default Ember.Component.extend(bufferedRender({
   classNameBindings: [':topic-list-item', 'unboundClassNames', 'topic.visited'],
   attributeBindings: ['data-topic-id'],
   'data-topic-id': Em.computed.alias('topic.id'),
+  canBookmark: Ember.computed.bool('currentUser'),
 
   actions: {
     toggleBookmark() {
@@ -156,6 +157,18 @@ export default Ember.Component.extend(bufferedRender({
       this.set('topic.highlight', false);
       this.highlight();
     }
-  }.on('didInsertElement')
+    Ember.run.scheduleOnce('afterRender', this, () => {
+        this._setupBookmarking();
+    });
+  }.on('didInsertElement'),
+
+  _setupBookmarking: function() {
+    const self = this;
+    let postId = this.get('topic.topic_post_id'),
+        $bookmark = this.$('.topic-bookmark');
+    $bookmark.on('click.topic-bookmark', () => {
+      this.get('topic').toggleBookmark().finally(() => this.rerenderBuffer());
+    });
+  }
 
 }));
