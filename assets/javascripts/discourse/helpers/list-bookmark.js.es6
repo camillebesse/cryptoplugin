@@ -1,9 +1,9 @@
 import { registerUnbound } from 'discourse-common/lib/helpers';
 
-registerUnbound('list-bookmark', function(button, params) {
+registerUnbound('list-bookmark', function(topic, params) {
   var classes = 'topic-bookmark',
       title = 'bookmarks.not_bookmarked';
-  if (this.get('topic.topic_post_bookmarked')) {
+  if (topic.bookmarked) {
     classes += ' bookmarked';
     title = 'bookmarks.created';
   }

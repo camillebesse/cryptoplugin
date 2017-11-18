@@ -9,6 +9,18 @@ img.crypto-title-icon {
 .topic-featured-link.crypto-featured-link{
   text-transform: uppercase;
 }
+.list-button.topic-bookmark{
+  -webkit-appearance: none;
+  border: none;
+  color: #919191;
+  font-size: 18px;
+  line-height: 1.25em;
+  padding-top: 12px;
+
+  &.bookmarked {
+    color: $tertiary;
+  }
+}
 .crypto-percentage{
   &.positive{
     color: #093;
