@@ -242,6 +242,9 @@ after_initialize do
   add_to_serializer(:topic_list_item, :cryptocurrency_percent_change_7d) { object.custom_fields["cryptocurrency_percent_change_7d"] }
   add_to_serializer(:topic_list_item, :cryptocurrency_last_updated) { object.custom_fields["cryptocurrency_last_updated"] }
 
+  add_to_serializer(:topic_list_item, :topic_post_id) { object.first_post.id }
+  add_to_serializer(:topic_list_item, :topic_post_bookmarked) { object.first_post.post_actions.exists?(post_action_type_id: 1) }
+
   add_to_serializer(:post, :topic_custom_fields, false) { object.topic.custom_fields }
 
 end

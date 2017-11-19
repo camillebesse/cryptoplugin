@@ -3,7 +3,7 @@ import { registerUnbound } from 'discourse-common/lib/helpers';
 registerUnbound('list-bookmark', function(topic, params) {
   var classes = 'topic-bookmark',
       title = 'bookmarks.not_bookmarked';
-  if (topic.bookmarked) {
+  if (topic.topic_post_bookmarked) {
     classes += ' bookmarked';
     title = 'bookmarks.created';
   }

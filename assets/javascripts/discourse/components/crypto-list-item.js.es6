@@ -4,6 +4,7 @@ import { bufferedRender } from 'discourse-common/lib/buffered-render';
 import { findRawTemplate } from 'discourse/lib/raw-templates';
 import { wantsNewWindow } from 'discourse/lib/intercept-click';
 import { ajax } from 'discourse/lib/ajax';
+import { popupAjaxError } from 'discourse/lib/ajax-error';
 
 export function showEntrance(e) {
   let target = $(e.target);
@@ -165,13 +166,18 @@ export default Ember.Component.extend(bufferedRender({
 
   _setupBookmarking: function() {
     const self = this;
-    let postId = this.get('topic.topic_post_id'),
-        $bookmark = this.$('.topic-bookmark');
+    let $bookmark = this.$('.topic-bookmark');
     $bookmark.on('click.topic-bookmark', () => {
-      ajax('/t/' + this.get('topic').id + '/bookmark', {
-        type: 'PUT'
-      }).finally(function(result) {
-        self.get('topic').bookmarked = true;
+      let postId = this.get('topic.topic_post_id');
+      ajax('/posts/' + postId + '/bookmark', {
+        type: 'PUT',
+        data: { bookmarked: !this.get('topic').topic_post_bookmarked }
+      })
+      .catch(function(error) {
+        popupAjaxError(error);
+      })
+      .finally(function(result) {
+        self.set('topic.topic_post_bookmarked', !self.get('topic.topic_post_bookmarked');
         self.rerenderBuffer();
       });
     });
