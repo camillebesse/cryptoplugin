@@ -177,7 +177,7 @@ export default Ember.Component.extend(bufferedRender({
         popupAjaxError(error);
       })
       .finally(function(result) {
-        self.set('topic.topic_post_bookmarked', !self.get('topic.topic_post_bookmarked');
+        self.set('topic.topic_post_bookmarked', !self.get('topic.topic_post_bookmarked'));
         self.rerenderBuffer();
       });
     });
