@@ -7,7 +7,7 @@ module Cryptocurrencies
 
     config.after_initialize do
 
-      SiteSetting.top_menu = "home|latest|new|unread|top|categories"
+      # SiteSetting.top_menu = "home|latest|new|unread|top|categories"
 
       module ::Jobs
         class PollCoinMarketCap < Jobs::Scheduled
