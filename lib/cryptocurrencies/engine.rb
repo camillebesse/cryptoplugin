@@ -7,7 +7,9 @@ module Cryptocurrencies
 
     config.after_initialize do
 
-      SiteSetting.top_menu = "latest|new|unread|top|categories"
+      if SiteSetting.top_menu[0,4] != "home"
+        SiteSetting.top_menu = "home|favorites|" + SiteSetting.top_menu
+      end
 
       module ::Jobs
         class PollCoinMarketCap < Jobs::Scheduled
@@ -60,7 +62,7 @@ module Cryptocurrencies
 
                   topic.custom_fields["cryptocurrency_price_usd_sort"] = currency["price_usd"].to_i
                   topic.custom_fields["cryptocurrency_price_btc_sort"] = currency["price_btc"].to_i
-                  topic.custom_fields["cryptocurrency_24h_volume_usd_sort"] = currency["24h_volume_usd"].to_i
+                  topic.custom_fields["cryptocurrency_24h_volume_usd_sort"] = (currency["24h_volume_usd"].to_i / 100)
                   topic.custom_fields["cryptocurrency_market_cap_usd_sort"] = currency["market_cap_usd"].to_i
                   topic.custom_fields["cryptocurrency_available_supply_sort"] = currency["available_supply"].to_i
                   topic.custom_fields["cryptocurrency_total_supply_sort"] = currency["total_supply"].to_i

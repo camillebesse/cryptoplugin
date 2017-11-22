@@ -3,6 +3,9 @@ en:
     home:
       title: "Home"
       help: "homepage for the site"
+    favorites:
+      title: "Favorites"
+      help: "favorite cryptocurrencies"
   js:
     cryptocurrency_favorite: "Fav"
     cryptocurrency_rank: "Rank"
@@ -20,3 +23,10 @@ en:
       home:
         title: "Home"
         help: "homepage for the site"
+      favorites:
+        title: "Favorites"
+        help: "favorite cryptocurrencies"
+    topics:
+      bottom:
+        home: "There are no more Cryptocurrencies."
+        favorites: "You have no more favorite Cryptocurrencies."

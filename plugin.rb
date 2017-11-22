@@ -13,6 +13,11 @@ Discourse.anonymous_top_menu_items.push(:home)
 Discourse.filters.push(:home)
 Discourse.anonymous_filters.push(:home)
 
+Discourse.top_menu_items.push(:favorites)
+Discourse.anonymous_top_menu_items.push(:favorites)
+Discourse.filters.push(:favorites)
+Discourse.anonymous_filters.push(:favorites)
+
 load File.expand_path('../lib/cryptocurrencies/engine.rb', __FILE__)
 
 after_initialize do
@@ -31,6 +36,22 @@ after_initialize do
     def list_home
       create_list(:market_rank, unordered: true) do |topics|
         topics.joins("inner join topic_custom_fields tfv ON tfv.topic_id = topics.id AND tfv.name = 'cryptocurrency_rank'")
+              .order("coalesce(tfv.value,'0')::integer asc, topics.bumped_at desc")
+      end
+    end
+
+    def list_favorites
+      create_list(:market_rank, unordered: true) do |topics|
+        topics.joins("inner join topic_custom_fields tfv ON tfv.topic_id = topics.id AND tfv.name = 'cryptocurrency_rank'")
+              .where('topics.id IN (SELECT pp.topic_id
+                                FROM post_actions pa
+                                JOIN posts pp ON pp.id = pa.post_id
+                                WHERE pa.user_id = :user_id AND
+                                      pa.post_action_type_id = :action AND
+                                      pa.deleted_at IS NULL
+                             )', user_id: @user.id,
+                                 action: 1
+                             )
               .order("coalesce(tfv.value,'0')::integer asc, topics.bumped_at desc")
       end
     end

@@ -78,7 +78,7 @@ function initialize(api) {
   api.modifyClass('component:topic-list', {
     filter() {
       let filter = this.get('parentView.model.filter');
-      if (filter == "home") {
+      if (filter == "home" || filter == "favorites") {
         return true;
       } 
       else {
